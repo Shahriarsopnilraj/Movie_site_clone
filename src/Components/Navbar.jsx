@@ -11,7 +11,7 @@ function Navbar() {
     )
   return (
     <>
-      <div className="navbar bg-black/40  backdrop-blur-lg shadow-md text-white fixed top-0 left-0 right-0 z-1000">
+      <div className="navbar font-mont bg-black/40  backdrop-blur-lg shadow-md text-white fixed top-0 left-0 right-0 z-1000">
   <div className='w-11/12 mx-auto flex justify-between items-center'>
     <div className="navbar-start">
     <div className="dropdown">
@@ -25,7 +25,7 @@ function Navbar() {
       </ul>
     </div>
     <div className='flex items-center gap-10'>
-        <a className=" text-xl">Dramatic</a>
+        <a className=" text-xl text-[#facc15] font-grif">Dramatic</a>
         <div className="navbar-center hidden lg:flex">
     <ul className="flex gap-6">
       {link}

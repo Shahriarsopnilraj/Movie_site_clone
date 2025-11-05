@@ -23,14 +23,7 @@ export default function ImageCarousel() {
 
   return (
     <>
-      {/* Inline CSS for Swiper dots */}
-      <style>
-        {`
-          
-        `}
-      </style>
-
-      <div className="w-full h-[60vh] object-cover md:h-[70vh] lg:h-[90vh] ">
+    <div className="w-full h-[60vh] object-cover md:h-[70vh] lg:h-[90vh] ">
         <SwiperCarousel
           modules={[Pagination, Autoplay]}
           pagination={{ dynamicBullets: true, clickable: true }}
@@ -44,7 +37,7 @@ export default function ImageCarousel() {
               <img
                 src={img}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover "
+                className="w-full h-[60vh] md:h-[70vh] lg:h-[90vh] object-cover "
               />
             </SwiperSlide>
           ))}
