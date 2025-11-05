@@ -11,5 +11,11 @@ export default defineConfig({
       },
     }),tailwindcss()
   ],
-  base: "/Movie_site_clone",
+  // base: "/Movie_site_clone",
 })
+
+
+
+  //   "predeploy": "npm run build",
+  //   "deploy": "gh-pages -d dist"
+  // },
