@@ -5,7 +5,8 @@ function CategoriaNavbar({catagories,selectCategory,setSelectCategory}) {
     <div className='flex flex-wrap justify-start gap-3 md:gap-5 py-10'>
       {
         catagories.map(cat=>(
-            <button key={cat}
+             <button key={cat}
+            onClick={() => setSelectCategory(cat)}
             className={`px-4 py-2 rounded-full font-medium transition-all duration-300
               ${selectCategory===cat?"bg-yellow-500 text-black":"border border-yellow-500 text-gray-300 hover:bg-yellow-400 hover:text-black"}
               

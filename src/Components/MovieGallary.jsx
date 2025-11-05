@@ -10,7 +10,7 @@ function MovieGallary() {
     const[selectCategory,setSelectCategory]=useState("All")
     const[showAll,setShowAll] =useState(false)
     useEffect(()=>{
-        fetch('/public/Movies.json')
+        fetch("../public/Movies.json")
         .then(res=>res.json())
         .then(data=> setMovies(data))
         .catch((error)=>{
