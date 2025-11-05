@@ -4,6 +4,8 @@ import { useState } from 'react'
 import CategoriaNavbar from './CategoriaNavbar'
 import { toast } from 'react-hot-toast';
 import MovieCard from './MovieCard';
+import TopRated from './TopRated';
+import Footer from './Footer';
 
 function MovieGallary() {
     const [movies,setMovies] = useState([])
@@ -61,6 +63,8 @@ function MovieGallary() {
           <p className='text-gray-400 text-center'>No Movies Data Found</p>
         )
       }
+      {/* <TopRated movies={movies}></TopRated> */}
+      <Footer></Footer>
     </div>
   )
 }

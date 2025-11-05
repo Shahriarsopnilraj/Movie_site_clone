@@ -15,7 +15,7 @@ function MovieCard({movie}) {
             <FaHeartCircleCheck className='text-rose-700' />
         </div>
       </div>
-      <p className='text-sm text-gray-400 '>{movie.released_date}</p>
+      <p className='text-sm text-gray-400'>{movie.released_date}</p>
 
       <div className='flex justify-between p-4' >
         <p className='text-sm text-black font-extrabold bg-yellow-400 rounded px-2'>{movie.platform}</p>
