@@ -1,36 +1,66 @@
-import React, { useState } from 'react'
-import { FaEye } from "react-icons/fa";
-import { FaHeartCircleCheck } from 'react-icons/fa6';
-import { IoMdStarHalf } from 'react-icons/io';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import MovieCard from './MovieCard';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-function TopRated({movies}) {
+const TopRated = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    fetch("/Movies.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setMovies(data);
+        setLoading(false);
+        toast.success(`Loaded ${data.length} movies successfully`);
+      })
+      .catch((err) => {
+        console.log(`Error loading movies:`, err);
+        setLoading(false);
+        toast.error("Failed to load movies. Please try again later!");
+      });
+  }, []);
+
+  const filteredMovies = movies
+    .filter((movie) => movie.rating > 7)
+    .filter((movie) =>
+      movie.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+  const responsive = {
+    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 4 },
+    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2 },
+    mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
+  };
+
+  if (loading) return <p className="text-center py-10">Loading...</p>;
+
   return (
-    <div className='flex gap-6 mt-10'>
-      {movies.map((movie) =>
-        movie.rating > 7 ? ( 
-          <div>
-            <img src={movie.card_picture} alt="" className='h-60 mx-auto object-contain rounded-lg' />
-            <div className='p-4 space-y-2'>
-                    <div className='flex justify-between'>
-                    <h3>{movie.title}</h3>
-                    <div className='flex items-center gap-2'>
-                        <FaEye className='text-gray-500 '/>
-                        <FaHeartCircleCheck className='text-rose-700' />
-                    </div>
-                  </div>
-                  <p className='text-sm text-gray-400'>{movie.released_date}</p>
-            
-                  <div className='flex justify-between p-4' >
-                    <p className='text-sm text-black font-extrabold bg-yellow-400 rounded px-2'>{movie.platform}</p>
-                    <p className='text-sm text-gray-400 flex justify-center items-center gap-2'><IoMdStarHalf className='text-yellow-400' />{movie.rating}</p>
-                  </div>
-                  </div>
-            
-          </div>
-        ) : null 
+    <div className="py-16 container mx-auto">
+      {filteredMovies.length > 0 ? (
+        <Carousel
+          responsive={responsive}
+          autoPlay
+          infinite
+          arrows
+          autoPlaySpeed={2500}
+          pauseOnHover
+          containerClass="px-2"
+        >
+          {filteredMovies.map((movie) => (
+            <div key={movie.id} className="px-2">
+              <MovieCard movie={movie} />
+            </div>
+          ))}
+        </Carousel>
+      ) : (
+        <p className="text-center">No movies found!</p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default TopRated
+export default TopRated;
