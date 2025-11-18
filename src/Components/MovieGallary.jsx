@@ -63,7 +63,6 @@ function MovieGallary() {
           <p className='text-gray-400 text-center'>No Movies Data Found</p>
         )
       }
-      <TopRated/>
       
     </div>
   )

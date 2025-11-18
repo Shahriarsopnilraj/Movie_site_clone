@@ -4,10 +4,9 @@ import MovieCard from './MovieCard';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const TopRated = () => {
+const TopRated = ({searchText}) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     fetch("/Movies.json")
